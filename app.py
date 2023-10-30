@@ -22,17 +22,20 @@ class Game:
             self.coupons[coord[0]][coord[1]] -= 1
             self.coupons[next_coord[0]][next_coord[1]] += 1
 
-    def simulate(self):
+    def _simulate(self):
         self.board.print_checkerboard(self.coupons)
         for _ in range(self.num_sim):
             traj = self.board.get_bird_trajectory()
             for coord in traj:
                 self._update_coupons(coord=coord)
-            print("Updated Coupons")
-            self.board.print_checkerboard(self.coupons)
-            print("#########################")
+        print("Updated Coupons")
+        self.board.print_checkerboard(self.coupons)
+        print("#########################")
+
+    def get_number_of_points_per_each_coupon:
+
 
 if __name__=='__main__':
-    g = Game(5, 2)
+    g = Game(15, 2)
     g.simulate()
 

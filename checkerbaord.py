@@ -44,7 +44,7 @@ class Board():
         mat = [["*" for i in range(self.edge_len)] for j in range(self.edge_len)]
         for i,coord in enumerate(self.trajectory):
             mat[coord[0]][coord[1]] = i
-        self.print_checkerboard(mat)
+        # self.print_checkerboard(mat)
 
 
     def get_bird_trajectory(self):
