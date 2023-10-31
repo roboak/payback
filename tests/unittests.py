@@ -1,24 +1,39 @@
 import unittest
-from app import Game
-def calculate_points_per_coupon(board, rounds, coupon_positions):
-    # Function that calculates the points per coupon after a specified number of rounds
-    pass  # Replace with actual implementation
+from unittest.mock import MagicMock
+from src.app import Game
 
-class TestCalculatePointsPerCoupon(unittest.TestCase):
-    def test_1st_round(self):
-        board = [[0, 1, 0], [1, 0, 2], [0, 3, 0]]
-        rounds = 25
-        coupon_positions = {'A': (0, 0), 'B': (1, 2), 'C': (2, 1)}
-        expected_points = {'A': 6, 'B': 8, 'C': 12}
-        self.assertEqual(calculate_points_per_coupon(board, rounds, coupon_positions), expected_points)
 
-    def test_50th_round(self):
-        # Add test case for 50th round calculation
-        pass
+class TestGame(unittest.TestCase):
+    # def test_get_number_of_points_per_each_coupon(self):
+    #     # Create a Game instance with known parameters
+    #     g = Game(2, 1)
+    #
+    #     # Call the method to get number of points per coupon
+    #     result = g.get_number_of_points_per_each_coupon()
+    #
+    #     # Add your assertions here to check if the result is as expected
+    #     self.assertIsInstance(result, list)
+    #     self.assertEqual(len(result), 2)  # Ensure the result has the expected length
+    #     # You can add more specific assertions based on the behavior of your code
 
-    def test_100th_round(self):
-        # Add test case for 100th round calculation
-        pass
+    def test_get_max_coupons(self):
+        # Create a Game instance with known parameters
+        g = Game(2, 1)
+
+        # Call the method to get max coupons
+        g.board._get_random_choice = MagicMock()
+
+        # Set the return value for random.choice
+        g.board._get_random_choice.return_value = (1, 0)  # Replace with your expected values
+
+        g.simulate()
+        # g.get_number_of_points_per_each_coupon()
+        ans=g.get_max_coupons()
+
+        # Add your assertions here to check if the result is as expected
+        self.assertIsInstance(ans, list)
+        # You can add more specific assertions based on the behavior of your code
+        self.assertEqual(1,g.board.get_coupons()[ans[0][0]][ans[0][1]].value)
 
 if __name__ == '__main__':
     unittest.main()
